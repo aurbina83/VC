@@ -1,0 +1,13 @@
+{
+	"ignore": [
+	"gulpfile.js",
+	"bower.json",
+	"package.json",
+	".gitignore",
+	".sass-cache",
+	"/interfaces",
+	"/test",
+	"/ngApp",
+	"/views"
+	]
+}

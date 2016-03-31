@@ -4,6 +4,7 @@ import favicon = require('serve-favicon');
 import logger = require('morgan');
 import cookieParser = require('cookie-parser');
 import bodyParser = require('body-parser');
+import mongoose = require('mongoose');
 const app = express();
 
 // view engine setup
@@ -17,6 +18,8 @@ if (process.env.NODE_ENV !== 'test') app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use('/templates', require('./routes/viewRoutes'));
 
 app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
