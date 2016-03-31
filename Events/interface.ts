@@ -3,6 +3,8 @@ namespace app.i {
         _id: any;
         title: string;
         numGuests: number;
+        eventLocation: string;
+        eventAddress: string;
         dateTime: number;
         dateCreated: number;
         branchService: string;

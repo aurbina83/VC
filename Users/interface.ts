@@ -12,5 +12,7 @@ namespace app.i {
         theater: string;
         imgUrl: string;
         mos: string;
+
+        events: Array<string | IEvent>
     }
 }

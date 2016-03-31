@@ -7,6 +7,11 @@ import bodyParser = require('body-parser');
 import mongoose = require('mongoose');
 const app = express();
 
+mongoose.connect('mongodb://localhost/vc', (err) => {
+  if (err) console.error(err);
+  else console.log('Connected to mongodb://localhost/vc');
+});
+
 // view engine setup
 app.set('views', './views');
 app.engine('html', require('ejs').renderFile);
