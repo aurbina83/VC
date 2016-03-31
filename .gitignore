@@ -1,0 +1,10 @@
+/bower_components
+/typings
+/node_modules
+*.js
+.env
+npm-debug.log
+!*.spec.js
+!utils.js
+.DS_Store
+/coverage
