@@ -5,14 +5,14 @@ namespace app.i {
         password: string;
         firstName: string;
         lastName: string;
-        age?: number;
-        currentLocation: string;
+        /**
+         * loc: [lng,lat]
+         */
+        loc: [number];
         branchService: string;
-        paygrade: string;
-        theater: string;
-        imgUrl: string;
-        mos: string;
+        campaign: string;
+        imgUrl?: string;
 
-        events: Array<string | IEvent>
+        events?: Array<string | IEvent>
     }
 }

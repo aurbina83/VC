@@ -2,32 +2,59 @@
 <html ng-app="app">
 
 <head>
-  <title>veteran-connect</title>
-  <meta charset="utf-8">
-  <base href="/" />
-  <link rel="stylesheet" href="/scripts/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/site.css"/>
+    <title>veteran-connect</title>
+    <meta charset="utf-8">
+    <base href="/" />
+    <link rel="stylesheet" href="/scripts/angular-google-places-autocomplete/src/autocomplete.css">
+    <link rel="stylesheet" href="/scripts/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/site.css" />
 </head>
 
-<body>
-  <div>
-    <a ui-sref="Home">Home</a>
-  </div>
+<body ng-controller="GlobalController as global">
+    <div class="row well" ng-controller="NavController as nav">
+        <div class="col col-sm-3" ng-show="global.status._id">
+            <a ui-sref="#">Create</a> &nbsp; | &nbsp;
+            <a ui-sref="#">Events</a>
+        </div>
+        <div class="col col-sm-1 col-sm-offset-11 text-left" ng-show="!nav.status._id">
+            <a ui-sref="Login">Login</a> &nbsp; &nbsp;
+            <a ui-sref="Register">Register</a>
+        </div>
+        <div class="col col-sm-1 col-sm-offset-11 text-left" ng-show="nav.status._id">
+            <div class="btn-group" uib-dropdown keyboard-nav>
+              <button id="simple-btn-keyboard-nav" type="button" style="height: 30px; line-height: 5px;" class="btn btn-success" uib-dropdown-toggle>
+                Menu <span class="caret"></span>
+              </button>
+              <ul uib-dropdown-menu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+                <li role="menuitem"><a ui-sref="#">Your Events</a></li>
+                <li role="menuitem"><a ui-sref="#">Attending</a></li>
+                <li role="menuitem"><a ng-click="nav.logout()" style="cursor: pointer;" >Logout</a></li>
+              </ul>
+            </div>
+        </div>
+    </div>
 
-  <ui-view></ui-view>
-  <script src='/scripts/lodash/dist/lodash.min.js'></script>
-  <script src="/scripts/angular/angular.min.js"></script>
-  <script src='/scripts/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
-  <script src='/scripts/angular-google-maps/dist/angular-google-maps.min.js'></script>
-  <script src="/scripts/angular-ui-router/release/angular-ui-router.min.js"></script>
-  <script src="/scripts/angular-resource/angular-resource.min.js"></script>
-  <script src="/scripts/angular-animate/angular-animate.min.js"></script>
-  <script src="/scripts/angular-touch/angular-touch.min.js"></script>
-  <script src="/scripts/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <ui-view></ui-view>
+    <script src='/scripts/lodash/dist/lodash.min.js'></script>
+    <script src="/scripts/angular/angular.min.js"></script>
+    <script src='/scripts/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
+    <script src='/scripts/angular-google-maps/dist/angular-google-maps.min.js'></script>
+    <script src="/scripts/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/scripts/angular-resource/angular-resource.min.js"></script>
+    <script src="/scripts/angular-animate/angular-animate.min.js"></script>
+    <script src="/scripts/angular-touch/angular-touch.min.js"></script>
+    <script src="/scripts/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="/scripts/angular-google-places-autocomplete/dist/autocomplete.min.js"></script>
 
-  <script src="/js/app.js"></script>
-  <script src="/js/services.js"></script>
-  <script src="/js/controllers.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/services/UserService.js"></script>
+    <script src="/js/controllers/HomeController.js"></script>
+    <script src="/js/controllers/GlobalController.js"></script>
+    <script src="/js/controllers/NavController.js"></script>
+    <script src="/js/controllers/UserLoginController.js"></script>
+    <script src="/js/controllers/UserRegistrationController.js"></script>
+
 </body>
 
 </html>

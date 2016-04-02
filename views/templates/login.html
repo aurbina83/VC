@@ -1,0 +1,30 @@
+<form class="form-horizontal" ng-submit="vm.login()" name="registration">
+<fieldset>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Email Address</label>
+  <div class="col-md-4">
+  <input id="email" name="textinput" type="text" placeholder="abc@abc.com" class="form-control input-md" ng-model="vm.user.email" required="">
+
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="passwordinput">Password Input</label>
+  <div class="col-md-4">
+    <input id="passwordinput" name="passwordinput" type="password" placeholder="" class="form-control input-md" ng-model="vm.user.password" required="">
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="singlebutton" name="singlebutton" class="btn btn-info" type="submit">Sign In</button>
+  </div>
+</div>
+
+</fieldset>
+</form>

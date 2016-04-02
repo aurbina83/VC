@@ -7,6 +7,8 @@ import bodyParser = require('body-parser');
 import mongoose = require('mongoose');
 const app = express();
 
+require('./Users/model');
+
 mongoose.connect('mongodb://localhost/vc', (err) => {
   if (err) console.error(err);
   else console.log('Connected to mongodb://localhost/vc');
@@ -28,6 +30,8 @@ app.use('/templates', require('./routes/viewRoutes'));
 
 app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
+
+app.use('/api/v1/users', require('./Users/routes'));
 
 app.get('/*', function(req, res, next) {
   if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {

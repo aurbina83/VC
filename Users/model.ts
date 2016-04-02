@@ -13,13 +13,10 @@ let userSchema = new mongoose.Schema({
     password: { type: String },
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
-    age: {type: Number},
-    currentLocation: {type: String},
-    branchService: {type: String},
-    paygrade: {type: String},
-    theater: {type: String},
+    loc: {type: [Number], index: '2d'},
+    branchService: {type: String, required: true},
+    campaign: {type: String, required: true},
     imgUrl: {type: String},
-    mos: {type: String},
 
     events: [{type: mongoose.Schema.Types.ObjectId, ref: 'Event'}]
 });

@@ -1,0 +1,79 @@
+<form class="form-horizontal" ng-submit="vm.register()" name="registration">
+<fieldset>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Email Address</label>
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="abc@abc.com" class="form-control input-md" required="" ng-model="vm.user.email" ng-pattern="vm.email">
+
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="passwordinput">Password</label>
+  <div class="col-md-4">
+    <input id="passwordinput" name="passwordinput" type="password" class="form-control input-md" required="" ng-model="vm.user.password" ng-pattern="vm.password">
+    <span class="help-block" style="color: red; font-size: 10px;" ng-show="registration.passwordinput.$invalid">Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character</span>
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">First Name</label>
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-model="vm.user.firstName">
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Last Name</label>
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-model="vm.user.lastName">
+
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectbasic">Branch of Service</label>
+  <div class="col-md-4">
+    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="vm.user.branchService" required>
+      <option value="Army">Army</option>
+      <option value="Navy">Navy</option>
+      <option value="Marines">Marines</option>
+      <option value="Air Force">Air Force</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectbasic">Campaign</label>
+  <div class="col-md-4">
+    <select id="selectbasic" name="selectbasic" class="form-control" ng-model="vm.user.campaign" required>
+      <option value="GWOT">GWOT</option>
+      <option value="Desert Storm/Shield">Desert Storm/Shield</option>
+      <option value="Vietnam">Vietnam</option>
+      <option value="Other">Other</option>
+      <option value="Peace Time">Peace Time</option>
+    </select>
+  </div>
+</div>
+
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+      <span class="help-block" style="color: red; font-size: 10px;" ng-show="registration.$invalid">All entries required</span>
+    <button id="singlebutton" type="submit" name="singlebutton" class="btn btn-primary" ng-disabled="registration.$invalid">Submit</button>
+  </div>
+</div>
+
+</fieldset>
+</form>

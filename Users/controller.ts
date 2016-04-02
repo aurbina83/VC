@@ -5,7 +5,8 @@ import { IUserModel } from './model';
 export function controller(User: mongoose.Model<IUserModel>) {
     return {
         login: login,
-        register: register
+        register: register,
+        update: update
     }
     function login(req: express.Request, res: express.Response, next: Function) {
       if (!req.body.email) return next({ message: 'An email is required to login.' });
@@ -33,5 +34,12 @@ export function controller(User: mongoose.Model<IUserModel>) {
           res.json({ token: user.generateJWT() });
         });
       });
+    }
+
+    function update (req: express.Request, res: express.Response, next: Function) {
+        User.update({_id: req.params.id}, (err) => {
+            if(err) return next(err);
+            res.json({message: 'User Updated'});
+        });
     }
 }

@@ -3,14 +3,14 @@ namespace app.i {
         _id: any;
         title: string;
         numGuests: number;
-        eventLocation: string;
+        /**
+         * loc: [lng, lat]
+         */
+        loc: [number];
         eventAddress: string;
         dateTime: number;
         dateCreated: number;
         branchService: string;
         eventCreator: (string | IUser);
-
-        comments: [string | IComment];
-        attendees: [string | IUser];
     }
 }
