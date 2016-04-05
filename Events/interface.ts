@@ -2,15 +2,16 @@ namespace app.i {
     export interface IEvent {
         _id: any;
         title: string;
+        name: string;
+        description: string;
         numGuests: number;
         /**
          * loc: [lng, lat]
          */
         loc: [number];
         eventAddress: string;
-        dateTime: number;
+        dateTime: string;
         dateCreated: number;
-        branchService: string;
         eventCreator: (string | IUser);
     }
 }

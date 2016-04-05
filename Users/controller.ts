@@ -37,9 +37,9 @@ export function controller(User: mongoose.Model<IUserModel>) {
     }
 
     function update (req: express.Request, res: express.Response, next: Function) {
-        User.update({_id: req.params.id}, (err) => {
+        User.update({_id: req.params.id}, req.body,(err, numRows) => {
             if(err) return next(err);
-            res.json({message: 'User Updated'});
+            res.json({message: "Location Updated"});
         });
     }
 }

@@ -12,6 +12,7 @@ namespace app.i {
         branchService: string;
         campaign: string;
         imgUrl?: string;
+        maxDist?: number;
 
         events?: Array<string | IEvent>
     }

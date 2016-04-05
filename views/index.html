@@ -7,13 +7,14 @@
     <base href="/" />
     <link rel="stylesheet" href="/scripts/angular-google-places-autocomplete/src/autocomplete.css">
     <link rel="stylesheet" href="/scripts/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/scripts/angular-bootstrap-datetimepicker/src/css/datetimepicker.css"/>
     <link rel="stylesheet" href="/css/site.css" />
 </head>
 
 <body ng-controller="GlobalController as global">
     <div class="row well" ng-controller="NavController as nav">
         <div class="col col-sm-3" ng-show="global.status._id">
-            <a ui-sref="#">Create</a> &nbsp; | &nbsp;
+            <a ui-sref="Create Event">Create</a> &nbsp; | &nbsp;
             <a ui-sref="#">Events</a>
         </div>
         <div class="col col-sm-1 col-sm-offset-11 text-left" ng-show="!nav.status._id">
@@ -36,6 +37,7 @@
 
     <ui-view></ui-view>
     <script src='/scripts/lodash/dist/lodash.min.js'></script>
+    <script src="/scripts/moment/moment.js"></script>
     <script src="/scripts/angular/angular.min.js"></script>
     <script src='/scripts/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
     <script src='/scripts/angular-google-maps/dist/angular-google-maps.min.js'></script>
@@ -44,16 +46,20 @@
     <script src="/scripts/angular-animate/angular-animate.min.js"></script>
     <script src="/scripts/angular-touch/angular-touch.min.js"></script>
     <script src="/scripts/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="/scripts/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+    <script src="/scripts/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script src="/scripts/angular-google-places-autocomplete/dist/autocomplete.min.js"></script>
 
     <script src="/js/app.js"></script>
     <script src="/js/services/UserService.js"></script>
+    <script src="/js/services/EventService.js"></script>
     <script src="/js/controllers/HomeController.js"></script>
     <script src="/js/controllers/GlobalController.js"></script>
     <script src="/js/controllers/NavController.js"></script>
     <script src="/js/controllers/UserLoginController.js"></script>
     <script src="/js/controllers/UserRegistrationController.js"></script>
+    <script src="/js/controllers/EventCreateController.js"></script>
 
 </body>
 

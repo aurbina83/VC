@@ -7,6 +7,7 @@ import bodyParser = require('body-parser');
 import mongoose = require('mongoose');
 const app = express();
 
+require('./Events/model');
 require('./Users/model');
 
 mongoose.connect('mongodb://localhost/vc', (err) => {

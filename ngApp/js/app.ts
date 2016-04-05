@@ -1,6 +1,6 @@
 'use strict';
 namespace app {
-  angular.module('app', ['ui.router', 'ngResource', 'uiGmapgoogle-maps', 'google.places', 'ui.bootstrap'])
+  angular.module('app', ['ui.router', 'ngResource', 'uiGmapgoogle-maps', 'google.places', 'ui.bootstrap', 'ui.bootstrap.datetimepicker'])
     .config((
     $stateProvider: ng.ui.IStateProvider,
     $locationProvider: ng.ILocationProvider,
@@ -22,6 +22,12 @@ namespace app {
         url: '/login',
         templateUrl: '/templates/login.html',
         controller: 'UserLoginController',
+        controllerAs: 'vm'
+    })
+    .state('Create Event', {
+        url: '/create',
+        templateUrl: '/templates/create.html',
+        controller: 'EventCreateController',
         controllerAs: 'vm'
     });
 

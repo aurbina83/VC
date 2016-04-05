@@ -17,6 +17,7 @@ let userSchema = new mongoose.Schema({
     branchService: {type: String, required: true},
     campaign: {type: String, required: true},
     imgUrl: {type: String},
+    maxDist: {type: Number},
 
     events: [{type: mongoose.Schema.Types.ObjectId, ref: 'Event'}]
 });

@@ -1,6 +1,6 @@
 namespace app.Services {
     export class UserService {
-        public status = { _id: null, firstName: null, lastName: null, email: null };
+        public status = { _id: null, firstName: null, lastName: null, email: null, loc: null };
 
         public login(user){
             let q = this.$q.defer();
@@ -42,6 +42,23 @@ namespace app.Services {
           this.status.firstName = u.firstName;
           this.status.lastName = u.lastName;
           this.status.email = u.email;
+          this.status.loc = u.loc;
+        }
+
+        public updateLoc(user: app.i.IUser){
+            let q = this.$q.defer();
+            this.$http.put('/api/v1/users/:id', user.loc).then((res) => {
+                q.resolve();
+            });
+            return q.promise;
+        }
+
+        public updateMaxDist(user: app.i.IUser){
+            let q = this.$q.defer();
+            this.$http.put('/api/v1/users', user.maxDist).then((res)=> {
+                q.resolve();
+            });
+            return q.promise;
         }
 
         public clearUser() {
@@ -49,7 +66,9 @@ namespace app.Services {
           this.status.firstName = null;
           this.status.lastName = null;
           this.status.email = null;
+          this.status.loc = null;
         }
+
 
         constructor(
             private $http: ng.IHttpService,
