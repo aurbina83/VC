@@ -22,6 +22,7 @@
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
+    "passport-instagram": "^1.0.0",
     "sanitize-html": "^1.11.4",
     "serve-favicon": "^2.3.0",
     "underscore": "^1.8.3"

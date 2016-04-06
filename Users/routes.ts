@@ -14,6 +14,10 @@ router.post('/login', ctrl.login);
 //POST /api/v1/users/register
 router.post('/register', ctrl.register);
 
+//GET /api/v1/users/:id
+
+// router.get('/:id', ctrl.)
+
 //PUT /api/v1/users/:id
 router.put('/:id', ctrl.update);
 

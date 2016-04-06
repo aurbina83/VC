@@ -4,7 +4,7 @@ namespace app.i {
         title: string;
         name: string;
         description: string;
-        numGuests: number;
+        numGuests: any;
         /**
          * loc: [lng, lat]
          */

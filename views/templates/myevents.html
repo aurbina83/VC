@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-md-10 col-md-offset-1 well" ng-repeat="e in vm.events">
+            <div class="row">
+                <div class="col col-md-2">
+                    {{e.title}}
+                </div>
+                <div class="col col-md-3">
+                    {{e.name}}
+                </div>
+                <div class="col col-md-3">
+                    {{e.dateTime | date: 'short'}}
+                </div>
+                <div class="col col-md-2">
+                    <a ui-sref="Update Event({id: e._id})"><button class="btn btn-info">Change</button></a>
+                </div>
+                <div class="col col-md-2">
+                    <button class="btn btn-danger" ng-click="vm.removeEvent(e)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,7 +3,6 @@ namespace app.Controllers {
         public event: app.i.IEvent;
         public place;
         public date;
-        public utc;
         public lat;
         public lng;
 
@@ -25,7 +24,7 @@ namespace app.Controllers {
             console.log(this.event);
 
             this.EventService.createEvent(this.event).then((res)=>{
-                this.$state.go('Home');
+                this.$state.go('My Events');
             });
         }
 

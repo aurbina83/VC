@@ -32,7 +32,10 @@ app.use('/templates', require('./routes/viewRoutes'));
 app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
 
+
 app.use('/api/v1/users', require('./Users/routes'));
+app.use('/api/v1/events', require('./Events/routes'));
+
 
 app.get('/*', function(req, res, next) {
   if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {

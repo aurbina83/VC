@@ -15,7 +15,7 @@
     <div class="row well" ng-controller="NavController as nav">
         <div class="col col-sm-3" ng-show="global.status._id">
             <a ui-sref="Create Event">Create</a> &nbsp; | &nbsp;
-            <a ui-sref="#">Events</a>
+            <a ui-sref="Events">Events</a>
         </div>
         <div class="col col-sm-1 col-sm-offset-11 text-left" ng-show="!nav.status._id">
             <a ui-sref="Login">Login</a> &nbsp; &nbsp;
@@ -27,7 +27,7 @@
                 Menu <span class="caret"></span>
               </button>
               <ul uib-dropdown-menu role="menu" aria-labelledby="simple-btn-keyboard-nav">
-                <li role="menuitem"><a ui-sref="#">Your Events</a></li>
+                <li role="menuitem"><a ui-sref="My Events">Your Events</a></li>
                 <li role="menuitem"><a ui-sref="#">Attending</a></li>
                 <li role="menuitem"><a ng-click="nav.logout()" style="cursor: pointer;" >Logout</a></li>
               </ul>
@@ -48,18 +48,22 @@
     <script src="/scripts/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="/scripts/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
     <script src="/scripts/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyA1BQ3FFK7Duy1txHKHdF-aoDYOeYHFx_8"></script>
     <script src="/scripts/angular-google-places-autocomplete/dist/autocomplete.min.js"></script>
 
     <script src="/js/app.js"></script>
     <script src="/js/services/UserService.js"></script>
     <script src="/js/services/EventService.js"></script>
+    <script src="/js/services/AuthInterceptor.js"></script>
     <script src="/js/controllers/HomeController.js"></script>
     <script src="/js/controllers/GlobalController.js"></script>
     <script src="/js/controllers/NavController.js"></script>
     <script src="/js/controllers/UserLoginController.js"></script>
     <script src="/js/controllers/UserRegistrationController.js"></script>
     <script src="/js/controllers/EventCreateController.js"></script>
+    <script src="/js/controllers/MyEventController.js"></script>
+    <script src="/js/controllers/EventUpdateController.js"></script>
+    <script src="/js/controllers/EventsController.js"></script>
 
 </body>
 

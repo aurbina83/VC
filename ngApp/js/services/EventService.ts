@@ -16,12 +16,16 @@ namespace app.Services {
             return this.EventResource.get({id: id});
         }
 
+        public getMine(id: string) {
+            return this.EventResource.query({id: 'myevents'});
+        }
+
         public createEvent(event: app.i.IEvent) {
             return this.EventResource.save(event).$promise;
         }
 
         public update(event: app.i.IEvent) {
-            return this.EventResource.update({ id: event._id }, {title: event.title, numGuests: event.numGuests, loc: event.loc, eventAddress: event.eventAddress, dateTime: event.dateTime}).$promise;
+            return this.EventResource.update({ id: event._id }, {title: event.title, description: event.description, numGuests: event.numGuests, loc: event.loc, eventAddress: event.eventAddress, dateTime: event.dateTime, name: event.name}).$promise;
         }
 
         public remove(id: string) {

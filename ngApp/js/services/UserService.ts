@@ -45,21 +45,21 @@ namespace app.Services {
           this.status.loc = u.loc;
         }
 
-        public updateLoc(user: app.i.IUser){
-            let q = this.$q.defer();
-            this.$http.put('/api/v1/users/:id', user.loc).then((res) => {
-                q.resolve();
-            });
-            return q.promise;
-        }
+        // public getUser(user: app.i.IUser){
+        //     let q = this.$q.defer();
+        //     this.$http.get('/api/v1/users/:id', user).then((res)=>{
+        //         q.resolve();
+        //     });
+        //     return q.promise;
+        // }
 
-        public updateMaxDist(user: app.i.IUser){
-            let q = this.$q.defer();
-            this.$http.put('/api/v1/users', user.maxDist).then((res)=> {
-                q.resolve();
-            });
-            return q.promise;
-        }
+        // public update(user: app.i.IUser){
+        //     let q = this.$q.defer();
+        //     this.$http.put('/api/v1/users/:id', user).then((res) => {
+        //         q.resolve();
+        //     });
+        //     return q.promise;
+        // }
 
         public clearUser() {
           this.status._id = null;

@@ -36,10 +36,19 @@ export function controller(User: mongoose.Model<IUserModel>) {
       });
     }
 
+    function findOne(req: express.Request, res: express.Response, next: Function) {
+        User.findOne({_id: req.params.id})
+        .exec((err, data) => {
+            if (err) return next (err);
+            res.json(data);
+        });
+    }
+
+
     function update (req: express.Request, res: express.Response, next: Function) {
         User.update({_id: req.params.id}, req.body,(err, numRows) => {
             if(err) return next(err);
-            res.json({message: "Location Updated"});
+            res.json({message: "Updated"});
         });
     }
 }

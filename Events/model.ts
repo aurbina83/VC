@@ -9,8 +9,8 @@ let eventSchema = new mongoose.Schema({
     numGuests: {type: String, required: true},
     loc: { type: [Number], index: '2d', required: true},
     eventAddress: { type: Array, required: true},
-    dateTime: {type: Number, required: true},
-    dateCreated: {type: Number, required: true},
+    dateTime: {type: String, required: true},
+    dateCreated: {type: Number},
     eventCreator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
