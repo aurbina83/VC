@@ -1,6 +1,6 @@
 namespace app.Services {
     export class UserService {
-        public status = { _id: null, firstName: null, lastName: null, email: null, loc: null };
+        public status = { _id: null, lng: null, lat: null, maxDist: 80.5};
 
         public login(user){
             let q = this.$q.defer();
@@ -39,43 +39,45 @@ namespace app.Services {
           let token = this.getToken();
           let u = JSON.parse( atob( token.split('.')[1] ) );
           this.status._id = u._id;
-          this.status.firstName = u.firstName;
-          this.status.lastName = u.lastName;
-          this.status.email = u.email;
-          this.status.loc = u.loc;
         }
 
-        // public getUser(user: app.i.IUser){
-        //     let q = this.$q.defer();
-        //     this.$http.get('/api/v1/users/:id', user).then((res)=>{
-        //         q.resolve();
-        //     });
-        //     return q.promise;
-        // }
 
-        // public update(user: app.i.IUser){
-        //     let q = this.$q.defer();
-        //     this.$http.put('/api/v1/users/:id', user).then((res) => {
-        //         q.resolve();
-        //     });
-        //     return q.promise;
-        // }
+        public update(id: string){
+            let q = this.$q.defer();
+            this.$http.put('/api/v1/users/' + id, null).then((res) => {
+                q.resolve();
+            });
+            return q.promise;
+        }
+
+        public getLocation(){
+            let q = this.$q.defer();
+            navigator.geolocation.getCurrentPosition((position)=>{
+                this.$timeout(()=>{
+                    this.status.lat = position.coords.latitude;
+                    this.status.lng = position.coords.longitude;
+                    console.log(this.status);
+                    console.log(position.coords.accuracy);
+                    q.resolve();
+                })
+            });
+            return q.promise;
+        }
 
         public clearUser() {
           this.status._id = null;
-          this.status.firstName = null;
-          this.status.lastName = null;
-          this.status.email = null;
-          this.status.loc = null;
         }
 
 
         constructor(
             private $http: ng.IHttpService,
             private $q: ng.IQService,
-            private $window: ng.IWindowService
+            private $window: ng.IWindowService,
+            private $timeout: ng.ITimeoutService
         ){
             if(this.getToken()) this.setUser();
+            console.log(this.status);
+            this.getLocation();
         }
     }
     angular.module('app').service('UserService', UserService);

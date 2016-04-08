@@ -4,7 +4,7 @@ namespace app.i {
         title: string;
         name: string;
         description: string;
-        numGuests: any;
+        numGuests: number;
         /**
          * loc: [lng, lat]
          */
@@ -13,5 +13,7 @@ namespace app.i {
         dateTime: string;
         dateCreated: number;
         eventCreator: (string | IUser);
+
+        attending: [string | IUser];
     }
 }

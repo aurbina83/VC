@@ -16,10 +16,12 @@ const auth = jwt({
 // Base Route == /api/v1/events
 
 //GET: /api/v1/events
-router.get('/', ctrl.getAll);
+router.get('/', auth, ctrl.getAll);
 
 //GET: /api/v1/events/:id
 router.get('/myevents', auth, ctrl.findMine);
+
+router.get('/attending', auth, ctrl.findAttending);
 
 //GET: /api/v1/events/:id
 router.get('/:id', ctrl.findOne);
@@ -29,6 +31,12 @@ router.delete('/:id', auth, ctrl.remove);
 
 //POST: /api/v1/events
 router.post('/', auth, ctrl.create);
+
+//PUT: /api/v1/events/attending/:id
+router.put('/attending/:id', auth, ctrl.attending);
+
+//PUT: /api/v1/events/notattending/:id
+router.put('/notattending/:id', auth, ctrl.notAttending);
 
 //PUT: /api/v1/events/:id
 router.put('/:id', auth, ctrl.update);

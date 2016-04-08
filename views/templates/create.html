@@ -4,6 +4,7 @@
             <h1>CREATE YOUR EVENT</h1>
             <div class="row well col-md-offset-4" style="background-color: white; width: 600px;">
                 <form class="form">
+                    <h4>{{vm.place.name}}</h4>
                     <input class="form-control text-center" g-places-autocomplete options="vm.autocompleteOptions" ng-model="vm.place" placeholder="FIND SOMETHING LOCAL"/>
                 </form>
             </div>

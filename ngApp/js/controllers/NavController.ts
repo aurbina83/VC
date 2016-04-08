@@ -1,6 +1,6 @@
 namespace app.Controllers {
   export class NavController {
-    public status: { _id: string, firstName: string, lastName: string, email: string };
+    public status;
 
     public logout() {
       this.UserService.logout();

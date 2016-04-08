@@ -6,6 +6,7 @@ export function controller(User: mongoose.Model<IUserModel>) {
     return {
         login: login,
         register: register,
+        findOne: findOne,
         update: update
     }
     function login(req: express.Request, res: express.Response, next: Function) {

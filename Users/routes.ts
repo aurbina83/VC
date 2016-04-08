@@ -15,8 +15,7 @@ router.post('/login', ctrl.login);
 router.post('/register', ctrl.register);
 
 //GET /api/v1/users/:id
-
-// router.get('/:id', ctrl.)
+router.get('/:id', ctrl.findOne)
 
 //PUT /api/v1/users/:id
 router.put('/:id', ctrl.update);

@@ -8,6 +8,7 @@ export function controller(Event: mongoose.Model<IEventModel>, User: mongoose.Mo
         getAll: getAll,
         findOne: findOne,
         findMine: findMine,
+        findAttending: findAttending,
         create: create,
         update: update,
         attending: attending,
@@ -15,38 +16,32 @@ export function controller(Event: mongoose.Model<IEventModel>, User: mongoose.Mo
         remove: remove
     }
 
-    // function getAll(req: express.Request, res: express.Response, next: Function){
-    //     //Get max distance from user preference
-    //     let maxDist = req['payload'].maxDist || 80.5;
-    //
-    //     //Convert distance to radians
-    //     // the raduis of Earth is approximately 6371 kilometers
-    //     maxDist /= 6371;
-    //
-    //     //Get Coordinates [lng, ltd]
-    //     let coords = req['payload'].loc;
-    //
-    //     //Find Locations
-    //     Event.find({
-    //         loc: {
-    //             $near: coords,
-    //             $maxDistance: maxDist
-    //         }
-    //     })
-    //     .populate('eventCreator', 'firstName lastName branchService')
-    //     .exec((err, events) => {
-    //         if (err) return next(err);
-    //         res.json(200, events);
-    //     });
-    // }
+    function getAll(req: express.Request, res: express.Response, next: Function){
+        //Get max distance from user preference
+        let maxDist = req.query.maxDist;
 
+        //Get Coordinates [lng, ltd]
+        let coords = [];
+        coords[0] = req.query.lng;
+        coords[1] = req.query.lat;
 
-    function getAll(req: express.Request, res: express.Response, next: Function) {
-        Event.find({})
-          .populate('eventCreator', 'firstName lastName branchService')
-          .exec((err, events) => {
-          if (err) return next(err);
-          res.json(events);
+        //Find Locations
+        Event.find({
+            loc: {
+                $near: {
+                    $geometry: {
+                        type: "Point",
+                        coordinates: coords
+                    },
+                    //Meters to KM
+                    $maxDistance: maxDist * 1000
+                }
+            }
+        })
+        .populate('eventCreator', 'firstName lastName branchService')
+        .exec((err, events) => {
+            if (err) return next(err);
+            res.json(200, events);
         });
     }
 
@@ -61,6 +56,15 @@ export function controller(Event: mongoose.Model<IEventModel>, User: mongoose.Mo
 
     function findMine(req: express.Request, res: express.Response, next: Function){
         Event.find({eventCreator: req['payload']._id})
+        .populate('eventCreator', 'firstName lastName branchService')
+        .exec((err, data) => {
+            if(err) return next(err);
+            res.json(data);
+        });
+    }
+
+    function findAttending(req: express.Request, res: express.Response, next: Function){
+        Event.find({attending: req['payload']._id})
         .populate('eventCreator', 'firstName lastName branchService')
         .exec((err, data) => {
             if(err) return next(err);
@@ -83,12 +87,22 @@ export function controller(Event: mongoose.Model<IEventModel>, User: mongoose.Mo
             if (err) return next (err);
             if(numRows.nModified ===0) return next({ message: "Could not update the requested event", status: 500});
             res.json({ message: 'Your event has been updated!'});
-        })
+        });
     }
 
-    function attending(req: express.Request, res: express.Response, next: Function){}
+    function attending(req: express.Request, res: express.Response, next: Function){
+        Event.update({_id: req.params.id}, {$push: {'attending': req['payload']._id }, $inc: {numGuests: -1}}, (err)=> {
+            if (err) return next (err)
+            res.json({message: "You're in!"});
+        });
+    }
 
-    function notAttending(req: express.Request, res: express.Response, next: Function){}
+    function notAttending(req: express.Request, res: express.Response, next: Function){
+        Event.update({_id: req.params.id}, {$pull: {'attending': req['payload']._id }, $inc: {numGuests: 1}}, (err)=> {
+            if (err) return next (err)
+            res.json({message: "You're Out!"});
+        });
+    }
 
     function remove(req: express.Request, res: express.Response, next: Function) {
       Event.findOneAndRemove({ _id: req.params.id, eventCreator: req['payload']._id }, (err) => {

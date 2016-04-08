@@ -13,7 +13,7 @@ let userSchema = new mongoose.Schema({
     password: { type: String },
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
-    loc: {type: [Number], index: '2d'},
+    loc: {type: [Number], index: '2dsphere'},
     branchService: {type: String, required: true},
     campaign: {type: String, required: true},
     imgUrl: {type: String},

@@ -48,6 +48,18 @@ namespace app {
         templateUrl: 'templates/events.html',
         controller: 'EventsController',
         controllerAs: 'vm'
+    })
+    .state('Event Details', {
+        url: '/event/:id',
+        templateUrl: 'templates/event.html',
+        controller: 'EventDetailController',
+        controllerAs: 'vm'
+    })
+    .state('Attending', {
+        url:'/attending',
+        templateUrl: '/templates/attending.html',
+        controller: 'AttendingEvents',
+        controllerAs: 'vm'
     });
 
     $urlRouterProvider.otherwise('/');

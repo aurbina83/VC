@@ -38,6 +38,8 @@
     "Events/routes.ts",
     "ngApp/js/app.ts",
     "ngApp/js/controllers/EventCreateController.ts",
+    "ngApp/js/controllers/EventDetailsController.ts",
+    "ngApp/js/controllers/EventsAttending.ts",
     "ngApp/js/controllers/EventsController.ts",
     "ngApp/js/controllers/EventUpdateController.ts",
     "ngApp/js/controllers/GlobalController.ts",
