@@ -8,6 +8,7 @@ import mongoose = require('mongoose');
 const app = express();
 
 require('./Events/model');
+require('./Comments/model');
 require('./Users/model');
 
 mongoose.connect('mongodb://localhost/vc', (err) => {
@@ -34,6 +35,7 @@ app.use('/scripts', express.static('bower_components'));
 
 
 app.use('/api/v1/users', require('./Users/routes'));
+app.use('/api/v1/comments', require('./Comments/routes'));
 app.use('/api/v1/events', require('./Events/routes'));
 
 

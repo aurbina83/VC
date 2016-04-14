@@ -12,6 +12,9 @@ namespace app.Controllers{
 
         constructor(private EventService: app.Services.EventService, private $scope: ng.IScope, private UserService: app.Services.UserService){
             this.status = EventService.status;
+            if(this.status.lng){
+                this.events = EventService.getAll({lng: this.status.lng, lat: this.status.lat, maxDist: this.status.maxDist});
+            }
             $scope.$watch(()=> this.status, (newValue, oldValue)=>{
                 console.log('watch');
                 if(newValue !== oldValue){

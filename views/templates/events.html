@@ -1,8 +1,13 @@
-<div class="container">
+<div class="load" ng-show="!vm.status.lng">
+    <img src="images/ring-alt.svg" alt="" width="100px" height="100px">
+</div>
+
+<div class="container" ng-show="vm.status.lng">
     <div class="row">
         <div class="col col-md-9 col-md-offset-2 well">
             <label>Miles</label>
             <select ng-model="vm.distance" ng-change="vm.setDistance()">
+                <option value="1">1</option>
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="20">20</option>

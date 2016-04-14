@@ -1,9 +1,10 @@
 import * as express from 'express';
 import { IEventModel } from './model';
-import * as mongoose from 'mongoose';
+import {ICommentModel} from '../Comments/model';
 import {IUserModel } from '../Users/model';
+import * as mongoose from 'mongoose';
 
-export function controller(Event: mongoose.Model<IEventModel>, User: mongoose.Model<IUserModel>) {
+export function controller(Event: mongoose.Model<IEventModel>, User: mongoose.Model<IUserModel>, Comment: mongoose.Model<ICommentModel>) {
     return {
         getAll: getAll,
         findOne: findOne,
@@ -47,12 +48,17 @@ export function controller(Event: mongoose.Model<IEventModel>, User: mongoose.Mo
 
     function findOne(req: express.Request, res: express.Response, next: Function){
         Event.findOne({_id: req.params.id})
+        .populate('comments', '-event')
+        .populate('user', 'firstName')
         .populate('eventCreator', 'firstName lastName branchService')
         .exec((err, data) => {
             if(err) return next(err);
-            res.json(data);
-        });
-    }
+            Comment.populate(data.comments, { path: 'user', select: 'firstName', model: 'User' }, (err, response) => {
+              if (err) return next(err);
+              res.json(data);
+            });
+          });
+      }
 
     function findMine(req: express.Request, res: express.Response, next: Function){
         Event.find({eventCreator: req['payload']._id})
@@ -93,7 +99,10 @@ export function controller(Event: mongoose.Model<IEventModel>, User: mongoose.Mo
     function attending(req: express.Request, res: express.Response, next: Function){
         Event.update({_id: req.params.id}, {$push: {'attending': req['payload']._id }, $inc: {numGuests: -1}}, (err)=> {
             if (err) return next (err)
-            res.json({message: "You're in!"});
+            User.update({_id: req['payload']._id}, {$push: {'attending': req.params.id}}, (err)=> {
+                if(err) return next (err);
+                res.json({message: "You're In!"});
+            })
         });
     }
 

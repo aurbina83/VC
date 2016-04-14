@@ -15,5 +15,6 @@ namespace app.i {
         eventCreator: (string | IUser);
 
         attending: [string | IUser];
+        comments: [ string | IComment ];
     }
 }

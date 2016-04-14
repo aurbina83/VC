@@ -15,5 +15,6 @@ namespace app.i {
         maxDist?: number;
 
         events?: Array<string | IEvent>
+        attending?: Array<string | IEvent>
     }
 }

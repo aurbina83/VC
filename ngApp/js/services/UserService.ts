@@ -1,6 +1,6 @@
 namespace app.Services {
     export class UserService {
-        public status = { _id: null, lng: null, lat: null, maxDist: 80.5};
+        public status = { _id: null, firstName: null, lastName: null, lng: null, lat: null, maxDist: 80.5};
 
         public login(user){
             let q = this.$q.defer();
@@ -39,6 +39,8 @@ namespace app.Services {
           let token = this.getToken();
           let u = JSON.parse( atob( token.split('.')[1] ) );
           this.status._id = u._id;
+          this.status.firstName = u.firstName;
+          this.status.lastName = u.lastName;
         }
 
 
@@ -66,6 +68,11 @@ namespace app.Services {
 
         public clearUser() {
           this.status._id = null;
+          this.status.firstName = null;
+          this.status.lastName = null;
+          this.status.lng = null;
+          this.status.lastName = null;
+          this.status.maxDist = null;
         }
 
 

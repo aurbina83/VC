@@ -13,7 +13,8 @@ let eventSchema = new mongoose.Schema({
     dateCreated: {type: Number},
     eventCreator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 
-    attending: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
+    attending: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    comments: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Comment' } ]
 });
 
 export let Event = mongoose.model<IEventModel>('Event', eventSchema);

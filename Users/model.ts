@@ -19,7 +19,8 @@ let userSchema = new mongoose.Schema({
     imgUrl: {type: String},
     maxDist: {type: Number},
 
-    events: [{type: mongoose.Schema.Types.ObjectId, ref: 'Event'}]
+    events: [{type: mongoose.Schema.Types.ObjectId, ref: 'Event'}],
+    attending: [{type: mongoose.Schema.Types.ObjectId, ref: 'Event'}]
 });
 
 userSchema.method('hashPassword', function(password, done) {
