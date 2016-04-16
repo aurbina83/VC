@@ -21,7 +21,6 @@
     "angular-touch": "^1.5.0",
     "animate.css": "^3.5.1",
     "angularjs-datepicker": "^0.2.16",
-    "angular-bootstrap-datetimepicker": "^1.0.1",
     "moment": "^2.12.0"
   },
   "resolutions": {
